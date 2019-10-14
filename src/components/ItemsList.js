@@ -1,8 +1,14 @@
 import React from "react";
+
+import { connect } from "react-redux";
+
 import ItemCard from "./ItemCard";
 import CartItem from "./CartItem";
 
-const ItemsList = () => {
+const ItemsList = props => {
+  const cryptosItem = props.cryptos.map(cryptoItem => (
+    <ItemCard cryptoItem={cryptoItem} key={cryptoItem.id} />
+  ));
   return (
     <div>
       <table className="table table-striped">
@@ -15,11 +21,15 @@ const ItemsList = () => {
             <th> buy</th>
           </tr>
         </thead>
-        <ItemCard />
+        {cryptosItem}
       </table>
       <CartItem />
     </div>
   );
 };
 
-export default ItemsList;
+const mapStateToProps = state => ({
+  cryptos: state.cryptosReducer.cryptos
+});
+
+export default connect(mapStateToProps)(ItemsList);

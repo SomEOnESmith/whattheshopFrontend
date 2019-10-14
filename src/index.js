@@ -8,6 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux";
 import { Provider } from "react-redux";
+import { getCryptos } from "./redux/actions/cryptosActions";
+
+store.dispatch(getCryptos());
 
 ReactDOM.render(
   <Provider store={store}>
