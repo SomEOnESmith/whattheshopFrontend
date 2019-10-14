@@ -17,7 +17,7 @@ export default (state = initialState, { type, payload }) => {
       const item = payload;
       const newitem = state.items.find(itemObj => item.name === itemObj.name);
       if (newitem) {
-        newitem.quantity += item.quantity;
+        newitem.quantity = (+newitem.quantity + +item.quantity).toFixed(3);
         return {
           ...state,
           items: [...state.items]
