@@ -1,8 +1,7 @@
-const initialState = null;
+import { combineReducers } from "redux";
 
-export default (state = initialState, { type, payload }) => {
-  switch (type) {
-    default:
-      return state;
-  }
-};
+import cartReducer from "./cartReducer";
+
+export default combineReducers({
+  cartReducer: cartReducer
+});
