@@ -7,17 +7,9 @@ import Modal from "react-responsive-modal";
 const ItemCard = props => {
   const [open, setOpen] = useState(false);
 
-  let change = "-3.20";
   let color = "";
   if (props.cryptoItem.rate_change >= 0) color = "green";
   else color = "red";
-
-  const item = {
-    name: "Litecoin",
-    quantity: 1.5,
-    price: 55.888,
-    rate: -3.2
-  };
 
   return (
     <tbody>
