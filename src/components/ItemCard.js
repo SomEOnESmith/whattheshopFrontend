@@ -23,7 +23,7 @@ const ItemCard = props => {
             width="30"
             height="30"
           />
-          Bitcoin
+          {props.cryptoItem.currency}
         </td>
         <td>{props.cryptoItem.price} KWD</td>
         <td style={{ color: color }}>{props.cryptoItem.rate_change}%</td>
