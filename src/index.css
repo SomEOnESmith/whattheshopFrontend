@@ -12,7 +12,26 @@ code {
     monospace;
 }
 
-.hello {
-  height: 20 !important;
-  width: 20 !important;
+.iconColor {
+  color: azure !important;
 }
+
+.badgePlace {
+  position: relative;
+  display: inline-block;
+  background-color: red;
+  /* margin: 20px 20px 10px 20px; */
+  right: 15px;
+  top: -20px;
+  padding: 7px !important;
+  border-radius: 45% !important;
+}
+
+.loadingCenter {
+  margin-top: 200px !important;
+}
+
+/* .imagePosition {
+  margin-left: 40px;
+  margin-top: 40px;
+} */

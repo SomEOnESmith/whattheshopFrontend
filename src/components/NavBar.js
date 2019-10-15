@@ -1,12 +1,20 @@
 import React from "react";
 
-const NavBar = () => {
+//redux
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+
+//FontAwesome
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const NavBar = props => {
   return (
     <div>
-      <nav className="navbar navbar-expand-xl navbar-dark bg-dark py-4">
-        <a className="navbar-brand" href="#">
+      <nav className="navbar navbar-expand-xl navbar-dark bg-dark py-4 ">
+        <NavLink className="navbar-brand" to="/item/list">
           Navbar
-        </a>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -25,17 +33,7 @@ const NavBar = () => {
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-            </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown ">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -64,9 +62,27 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
+        <div>
+          <ul className="nav justify-content-end">
+            <li className="nav-item">
+              <NavLink to="/cart/list" className="nav-link iconColor ">
+                <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+                {props.cart.length ? (
+                  <span className="badge badgePlace ">{props.cart.length}</span>
+                ) : (
+                  <div />
+                )}
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </nav>
     </div>
   );
 };
 
-export default NavBar;
+const mapStateToProps = state => ({
+  cart: state.cartReducer.items
+});
+
+export default connect(mapStateToProps)(NavBar);

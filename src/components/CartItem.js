@@ -1,29 +1,35 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const CartItem = () => {
+const CartItem = props => {
+  const { item } = props;
+  const crypto = props.cryptos.find(
+    cryptoItem => cryptoItem.currency === item.currency
+  );
+  const total = item.quantity * item.price;
   return (
     <div>
       <div className="card mb-3">
-        <div className="row no-gutters">
-          <div className="col-md-4">
+        <div className="row no-gutters justify-content-center align-items-center">
+          <div className="col-md-4 text-center">
             <img
-              src="https://dynamic-assets.coinbase.com/e785e0181f1a23a30d9476038d9be91e9f6c63959b538eabbc51a1abc8898940383291eede695c3b8dfaa1829a9b57f5a2d0a16b0523580346c6b8fab67af14b/asset_icons/b57ac673f06a4b0338a596817eb0a50ce16e2059f327dc117744449a47915cb2.png"
-              className=""
-              alt="..."
+              src={crypto.image}
               width="100"
               height="100"
+              alt={crypto.currency}
             />
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
+              <h5 className="card-title">{item.currency}</h5>
               <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+                price = {crypto.price} KWD quantity = {item.quantity}
               </p>
+              <p className="card-text">total = {total.toFixed(4)} KWD</p>
               <p className="card-text">
-                <small className="text-muted">Last updated 3 mins ago</small>
+                <small className="text-muted">
+                  rate = {crypto.rate_change}%
+                </small>
               </p>
             </div>
           </div>
@@ -33,4 +39,8 @@ const CartItem = () => {
   );
 };
 
-export default CartItem;
+const mapStateToProps = state => ({
+  cryptos: state.cryptosReducer.cryptos
+});
+
+export default connect(mapStateToProps)(CartItem);
