@@ -7,6 +7,9 @@ import Modal from "react-responsive-modal";
 const ItemCard = props => {
   const [open, setOpen] = useState(false);
 
+  /**
+   * Combine into single ternary?
+   */
   let color = "";
   if (props.cryptoItem.rate_change >= 0) color = "green";
   else color = "red";
