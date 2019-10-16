@@ -1,3 +1,6 @@
+/**
+ * Clean up/organize your imports
+ */
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";

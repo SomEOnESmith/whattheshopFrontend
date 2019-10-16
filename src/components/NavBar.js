@@ -33,6 +33,7 @@ const NavBar = props => {
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
+            {/* Remove unused nav components */}
             <li className="nav-item dropdown ">
               <a
                 className="nav-link dropdown-toggle"

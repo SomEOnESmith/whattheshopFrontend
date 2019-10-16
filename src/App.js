@@ -1,3 +1,6 @@
+/**
+ * Remove "dead" code
+ */
 /* <Route path="/authors/:authorID" component={AuthorDetail} /> */
 import React from "react";
 import "./App.css";
@@ -21,6 +24,7 @@ const App = props => {
       ) : (
         <div className="container mt-4">
           <Switch>
+            {/* Clean up URLs - better naming convention */}
             <Route path="/cart/list" component={CartList} />
             <Route path="/item/list" component={ItemsList} />
             <Redirect to="/item/list" />

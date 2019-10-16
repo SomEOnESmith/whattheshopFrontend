@@ -7,6 +7,9 @@ import { connect } from "react-redux";
 //actions
 import { addToCart } from "../redux/actions/cartActions";
 
+/**
+ * Maybe useState?
+ */
 class AddItemForm extends Component {
   state = {
     item: this.props.cryptoItem,
@@ -15,6 +18,9 @@ class AddItemForm extends Component {
 
   submitItem = event => {
     event.preventDefault();
+    /**
+     * Check if it can be simplified - just send state
+     */
     let item = {
       ...this.state.item,
       quantity: this.state.quantity
