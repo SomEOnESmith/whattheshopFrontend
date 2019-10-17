@@ -1,7 +1,3 @@
-/**
- * Remove "dead" code
- */
-/* <Route path="/authors/:authorID" component={AuthorDetail} /> */
 import React from "react";
 import "./App.css";
 
@@ -19,18 +15,16 @@ const App = props => {
   return (
     <div>
       <NavBar />
-      {props.loading ? (
-        <Loading />
-      ) : (
-        <div className="container mt-4">
-          <Switch>
-            {/* Clean up URLs - better naming convention */}
-            <Route path="/cart/list" component={CartList} />
-            <Route path="/item/list" component={ItemsList} />
-            <Redirect to="/item/list" />
-          </Switch>
-        </div>
-      )}
+      {props.loading
+        ? <Loading />
+        : <div className="container mt-4">
+            <Switch>
+              {/* Clean up URLs - better naming convention */}
+              <Route path="/cart" component={CartList} />
+              <Route path="/list" component={ItemsList} />
+              <Redirect to="/list" />
+            </Switch>
+          </div>}
     </div>
   );
 };

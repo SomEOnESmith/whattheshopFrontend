@@ -1,16 +1,20 @@
-/**
- * Clean up/organize your imports
- */
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+
+//css
+import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+//Components
+import App from "./App";
+
+//Tools
 import { BrowserRouter } from "react-router-dom";
-import store from "./redux";
 import { Provider } from "react-redux";
+
+//Store
+import store from "./redux";
 import { getCryptos } from "./redux/actions/cryptosActions";
 
 store.dispatch(getCryptos());

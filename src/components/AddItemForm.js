@@ -1,5 +1,4 @@
-// className="btn btn-success" onClick={() => props.addToCart(item)}
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 //redux
 import { connect } from "react-redux";
@@ -7,57 +6,37 @@ import { connect } from "react-redux";
 //actions
 import { addToCart } from "../redux/actions/cartActions";
 
-/**
- * Maybe useState?
- */
-class AddItemForm extends Component {
-  state = {
-    item: this.props.cryptoItem,
-    quantity: 0
-  };
+function AddItemForm(props) {
+  const [quantity, setQuantity] = useState(0);
 
-  submitItem = event => {
+  const submitItem = event => {
     event.preventDefault();
-    /**
-     * Check if it can be simplified - just send state
-     */
-    let item = {
-      ...this.state.item,
-      quantity: this.state.quantity
-    };
-    this.props.addToCart(item);
+    props.addToCart({ ...props.cryptoItem, quantity });
   };
 
-  onTextchange = event =>
-    this.setState({ [event.target.name]: event.target.value });
-
-  render() {
-    return (
-      <div className="mt-5 p-2">
-        <form onSubmit={this.submitItem}>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text">Quantity</span>
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              name="quantity"
-              onChange={this.onTextchange}
-            />
+  return (
+    <div className="mt-5 p-2">
+      <form onSubmit={submitItem}>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text">Quantity</span>
           </div>
-          <input type="submit" />
-        </form>
-      </div>
-    );
-  }
+          <input
+            type="text"
+            className="form-control"
+            name="quantity"
+            value={quantity}
+            onChange={quant => setQuantity(quant)}
+          />
+        </div>
+        <input type="submit" />
+      </form>
+    </div>
+  );
 }
 
 const mapDispatchToProps = dispatch => ({
   addToCart: item => dispatch(addToCart(item))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(AddItemForm);
+export default connect(null, mapDispatchToProps)(AddItemForm);

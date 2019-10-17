@@ -24,7 +24,7 @@ const NavBar = props => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
@@ -33,34 +33,6 @@ const NavBar = props => {
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
-            {/* Remove unused nav components */}
-            <li className="nav-item dropdown ">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown link
-              </a>
-              <div
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
-            </li>
           </ul>
         </div>
         <div>
@@ -68,11 +40,11 @@ const NavBar = props => {
             <li className="nav-item">
               <NavLink to="/cart/list" className="nav-link iconColor ">
                 <FontAwesomeIcon icon={faShoppingCart} size="2x" />
-                {props.cart.length ? (
-                  <span className="badge badgePlace ">{props.cart.length}</span>
-                ) : (
-                  <div />
-                )}
+                {props.cart.length
+                  ? <span className="badge badgePlace ">
+                      {props.cart.length}
+                    </span>
+                  : <div />}
               </NavLink>
             </li>
           </ul>

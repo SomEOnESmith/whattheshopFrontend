@@ -7,12 +7,8 @@ import Modal from "react-responsive-modal";
 const ItemCard = props => {
   const [open, setOpen] = useState(false);
 
-  /**
-   * Combine into single ternary?
-   */
   let color = "";
-  if (props.cryptoItem.rate_change >= 0) color = "green";
-  else color = "red";
+  props.cryptoItem.rate_change >= 0 ? (color = "green") : (color = "red");
 
   return (
     <tbody>
@@ -28,8 +24,12 @@ const ItemCard = props => {
           />
           {props.cryptoItem.currency}
         </td>
-        <td>{props.cryptoItem.price} KWD</td>
-        <td style={{ color: color }}>{props.cryptoItem.rate_change}%</td>
+        <td>
+          {props.cryptoItem.price} KWD
+        </td>
+        <td style={{ color: color }}>
+          {props.cryptoItem.rate_change}%
+        </td>
         <td>
           <div>
             <Modal open={open} onClose={() => setOpen(false)} center>
