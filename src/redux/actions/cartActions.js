@@ -16,7 +16,7 @@ export const checkout = cryptosCart => {
   return async dispatch => {
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/print/",
+        "http://127.0.0.1:8000/api/checkout/",
         cryptosCart
       );
       dispatch({
