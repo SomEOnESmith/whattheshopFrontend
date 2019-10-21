@@ -9,6 +9,8 @@ import NavBar from "./components/NavBar";
 //component
 import CartList from "./components/CartList";
 import ItemsList from "./components/ItemsList";
+import Signup from "./SignupForm";
+import Login from "./LoginForm";
 import Loading from "./components/Loading";
 
 const App = props => {
@@ -20,9 +22,11 @@ const App = props => {
         : <div className="container mt-4">
             <Switch>
               {/* Clean up URLs - better naming convention */}
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
               <Route path="/cart" component={CartList} />
               <Route path="/list" component={ItemsList} />
-              <Redirect to="/list" />
+              <Redirect from="/" to="/list" />
             </Switch>
           </div>}
     </div>
