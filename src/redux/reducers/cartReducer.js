@@ -1,12 +1,9 @@
 import { ADD_TO_CART, CHECKOUT } from "../actions/actionTypes";
 
 const initialState = {
-  items: [
-    {
-      currencyID: 1,
-      quantity: 1.076
-    }
-  ]
+
+  items: []
+
 };
 
 export default (state = initialState, { type, payload }) => {

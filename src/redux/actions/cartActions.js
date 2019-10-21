@@ -1,10 +1,13 @@
 import { ADD_TO_CART, CHECKOUT } from "./actionTypes";
 import axios from "axios";
 
-export const addToCart = item => {
-  return {
-    type: ADD_TO_CART,
-    payload: item
+export const addToCart = (item, close) => {
+  return async dispatch => {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: item
+    });
+    close(false);
   };
 };
 

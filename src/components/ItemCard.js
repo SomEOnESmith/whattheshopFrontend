@@ -13,7 +13,9 @@ const ItemCard = props => {
   return (
     <tbody>
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">
+          {props.cryptoItem.id}
+        </th>
         <td>
           <img
             src={props.cryptoItem.image}
@@ -33,7 +35,7 @@ const ItemCard = props => {
         <td>
           <div>
             <Modal open={open} onClose={() => setOpen(false)} center>
-              <AddItemForm cryptoItem={props.cryptoItem} />
+              <AddItemForm closeModal={setOpen} cryptoItem={props.cryptoItem} />
             </Modal>
             <button className="btn btn-success" onClick={() => setOpen(true)}>
               buy
