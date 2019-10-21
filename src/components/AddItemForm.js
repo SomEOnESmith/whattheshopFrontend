@@ -12,6 +12,7 @@ function AddItemForm(props) {
   const submitItem = event => {
     event.preventDefault();
     props.addToCart({ ...props.cryptoItem, quantity }, props.closeModal);
+
   };
 
   return (
