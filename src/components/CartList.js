@@ -7,10 +7,14 @@ import { connect } from "react-redux";
 import CartItem from "./CartItem";
 
 const CartList = props => {
-  const cart = props.cartItems.map(item => (
-    <CartItem item={item} key={item.id} />
-  ));
-  return <div>{cart}</div>;
+  const cart = props.cartItems.map((item, idx) =>
+    <CartItem item={item} key={idx} />
+  );
+  return (
+    <div>
+      {cart}
+    </div>
+  );
 };
 
 const mapStateToProps = state => ({

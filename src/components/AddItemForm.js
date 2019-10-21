@@ -11,7 +11,7 @@ function AddItemForm(props) {
 
   const submitItem = event => {
     event.preventDefault();
-    props.addToCart({ ...props.cryptoItem, quantity });
+    props.addToCart({ ...props.cryptoItem, quantity }, props.closeModal);
   };
 
   return (
@@ -36,7 +36,7 @@ function AddItemForm(props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: item => dispatch(addToCart(item))
+  addToCart: (item, close) => dispatch(addToCart(item, close))
 });
 
 export default connect(null, mapDispatchToProps)(AddItemForm);

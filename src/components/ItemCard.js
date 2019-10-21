@@ -33,7 +33,7 @@ const ItemCard = props => {
         <td>
           <div>
             <Modal open={open} onClose={() => setOpen(false)} center>
-              <AddItemForm cryptoItem={props.cryptoItem} />
+              <AddItemForm closeModal={setOpen} cryptoItem={props.cryptoItem} />
             </Modal>
             <button className="btn btn-success" onClick={() => setOpen(true)}>
               buy
