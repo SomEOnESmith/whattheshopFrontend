@@ -26,7 +26,7 @@ function AddItemForm(props) {
             className="form-control"
             name="quantity"
             value={quantity}
-            onChange={quant => setQuantity(quant)}
+            onChange={quant => setQuantity(quant.target.value)}
           />
         </div>
         <input type="submit" />
