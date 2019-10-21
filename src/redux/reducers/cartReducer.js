@@ -1,14 +1,7 @@
 import { ADD_TO_CART } from "../actions/actionTypes";
 
 const initialState = {
-  items: [
-    {
-      currency: "Bitcoin",
-      quantity: 1.076,
-      price: 8218,
-      rate: 0.3
-    }
-  ]
+  items: []
 };
 
 export default (state = initialState, { type, payload }) => {

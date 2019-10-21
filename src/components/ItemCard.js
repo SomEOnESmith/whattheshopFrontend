@@ -13,7 +13,9 @@ const ItemCard = props => {
   return (
     <tbody>
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">
+          {props.cryptoItem.id}
+        </th>
         <td>
           <img
             src={props.cryptoItem.image}
