@@ -9,8 +9,8 @@ import NavBar from "./components/NavBar";
 //component
 import CartList from "./components/CartList";
 import ItemsList from "./components/ItemsList";
-import Signup from "./SignupForm";
-import Login from "./LoginForm";
+import Signup from "./components/SignupForm";
+import Login from "./components/LoginForm";
 import Loading from "./components/Loading";
 
 const App = props => {

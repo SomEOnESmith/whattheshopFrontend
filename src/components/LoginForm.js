@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { signup } from "./redux/actions/authActions";
+import { Link, Redirect } from "react-router-dom";
+import { login } from "../redux/actions/authActions";
 import { connect } from "react-redux";
 
-class Signup extends Component {
+class Login extends Component {
   state = {
     username: "",
     password: ""
@@ -14,12 +14,12 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.signup(this.state);
+    this.props.login(this.state, this.props.history);
   };
 
   render() {
-    const { username, email, password } = this.state;
-
+    const { username, password } = this.state;
+    if (this.props.user) return <Redirect to="/" />;
     return (
       <div className="col-6 mx-auto">
         <div className="card my-5">
@@ -51,10 +51,10 @@ class Signup extends Component {
               </div>
 
               <button type="submit" className="btn btn-primary">
-                Signup
+                Login
               </button>
-              <Link to="/login" className="btn btn-link my-2 my-sm-0">
-                I already have an account
+              <Link to="/signup" className="btn btn-link my-2 my-sm-0">
+                Signup for an account
               </Link>
             </form>
           </div>
@@ -63,11 +63,13 @@ class Signup extends Component {
     );
   }
 }
-
+const mapStateToProps = state => ({
+  user: state.authReducer.user
+});
 const mapDispatchToProps = dispatch => {
   return {
-    signup: userData => dispatch(signup(userData))
+    login: (userData, history) => dispatch(login(userData, history))
   };
 };
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

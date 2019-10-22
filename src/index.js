@@ -16,9 +16,12 @@ import { Provider } from "react-redux";
 //Store
 import store from "./redux";
 import { getCryptos } from "./redux/actions/cryptosActions";
+import { fetchRealTime } from "./redux/actions/realTimeActions";
+import { checkForExpiredToken } from "./redux/actions/authActions";
 
 store.dispatch(getCryptos());
-
+store.dispatch(fetchRealTime());
+store.dispatch(checkForExpiredToken());
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

@@ -5,9 +5,15 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 //FontAwesome
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingCart,
+  faSignInAlt,
+  faUserPlus,
+  faUser
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import {logout} from "../redux/actions/authActions"
+import { dispatch } from "rxjs/internal/observable/pairs";
 const NavBar = props => {
   return (
     <div>
@@ -37,9 +43,31 @@ const NavBar = props => {
         </div>
         <div>
           <ul className="nav justify-content-end">
+            {props.user?
+              <button className="nav-item bg-transparent" onClick={()=>props.logout()}>
+              <NavLink to="/" className="nav-link iconColor ">
+                <FontAwesomeIcon icon={faUser} size="1x" />
+                {props.user.username}
+              </NavLink>
+            </button>:
+            <>
+            <li className="nav-item">
+              <NavLink to="/login" className="nav-link iconColor ">
+                <FontAwesomeIcon icon={faSignInAlt} size="1x" />
+                Login
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/signup" className="nav-link iconColor ">
+                <FontAwesomeIcon icon={faUserPlus} size="1x" />
+                SignUp
+              </NavLink>
+            </li>
+            </>
+            }
             <li className="nav-item">
               <NavLink to="/cart/list" className="nav-link iconColor ">
-                <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+                <FontAwesomeIcon icon={faShoppingCart} size="1x" />
                 {props.cart.length
                   ? <span className="badge badgePlace ">
                       {props.cart.length}
@@ -55,7 +83,11 @@ const NavBar = props => {
 };
 
 const mapStateToProps = state => ({
+  user:state.authReducer.user,
   cart: state.cartReducer.items
 });
 
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = dispatch=>({
+  logout: ()=> dispatch(logout())
+})
+export default connect(mapStateToProps,mapDispatchToProps)(NavBar);

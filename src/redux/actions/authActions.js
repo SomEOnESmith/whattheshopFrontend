@@ -21,24 +21,26 @@ const setCurrentUser = token => {
   };
 };
 
-export const login = userData => {
+export const login = (userData, history) => {
   return async dispatch => {
     try {
       const res = await instance.post("api/login/", userData);
       const user = res.data;
       dispatch(setCurrentUser(user.access));
+      history.replace("/");
     } catch (err) {
       console.error(err);
     }
   };
 };
 
-export const signup = userData => {
+export const signup = (userData, history) => {
   return async dispatch => {
     try {
       const res = await instance.post("api/register/", userData);
       const user = res.data;
       dispatch(setCurrentUser(user.access));
+      history.replace("/");
     } catch (err) {
       console.error(err);
     }
