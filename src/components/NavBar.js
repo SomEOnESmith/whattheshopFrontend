@@ -44,12 +44,24 @@ const NavBar = props => {
         <div>
           <ul className="nav justify-content-end">
             {props.user?
+            <>
               <button className="nav-item bg-transparent" onClick={()=>props.logout()}>
               <NavLink to="/" className="nav-link iconColor ">
                 <FontAwesomeIcon icon={faUser} size="1x" />
                 {props.user.username}
               </NavLink>
-            </button>:
+            </button>
+            <li className="nav-item">
+              <NavLink to="/cart/list" className="nav-link iconColor ">
+                <FontAwesomeIcon icon={faShoppingCart} size="1x" />
+                {props.cart.length
+                  ? <span className="badge badgePlace ">
+                      {props.cart.length}
+                    </span>
+                  : <div />}
+              </NavLink>
+            </li>
+            </>:
             <>
             <li className="nav-item">
               <NavLink to="/login" className="nav-link iconColor ">
@@ -65,16 +77,7 @@ const NavBar = props => {
             </li>
             </>
             }
-            <li className="nav-item">
-              <NavLink to="/cart/list" className="nav-link iconColor ">
-                <FontAwesomeIcon icon={faShoppingCart} size="1x" />
-                {props.cart.length
-                  ? <span className="badge badgePlace ">
-                      {props.cart.length}
-                    </span>
-                  : <div />}
-              </NavLink>
-            </li>
+
           </ul>
         </div>
       </nav>

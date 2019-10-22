@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Redirect } from "react-router-dom";
 //redux
 import { connect } from "react-redux";
 
@@ -8,6 +9,7 @@ import CartItem from "./CartItem";
 import { checkout } from "../redux/actions/cartActions";
 
 const CartList = props => {
+  if (!props.user) return <Redirect to="/" />;
   const cart = props.cartItems.map((item, idx) =>
     <CartItem item={item} key={idx} />
   );
@@ -21,7 +23,8 @@ const CartList = props => {
 };
 
 const mapStateToProps = state => ({
-  cartItems: state.cartReducer.items
+  cartItems: state.cartReducer.items,
+  user: state.authReducer.user
 });
 
 const mapDispatchToProps = dispatch => ({
