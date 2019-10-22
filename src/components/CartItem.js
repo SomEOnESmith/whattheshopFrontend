@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 const CartItem = props => {
   const { item } = props;
   console.log(item);
-  const crypto = props.cryptos.find(cryptoItem => cryptoItem.id === item.id);
-  const total = item.quantity * item.price;
+  const crypto = props.cryptos.find(
+    cryptoItem => cryptoItem.id === item.currency
+  );
+  const total = item.quantity * crypto.price;
   return (
     <div>
       <div className="card mb-3">

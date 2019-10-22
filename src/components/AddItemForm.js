@@ -11,8 +11,10 @@ function AddItemForm(props) {
 
   const submitItem = event => {
     event.preventDefault();
-    props.addToCart({ ...props.cryptoItem, quantity }, props.closeModal);
-
+    props.addToCart(
+      { currency: props.cryptoItem.id, quantity: quantity },
+      props.closeModal
+    );
   };
 
   return (

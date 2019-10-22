@@ -8,17 +8,14 @@ import CartItem from "./CartItem";
 import { checkout } from "../redux/actions/cartActions";
 
 const CartList = props => {
-
   const cart = props.cartItems.map((item, idx) =>
     <CartItem item={item} key={idx} />
-
   );
   return (
     <div>
       {cart}
 
       <button onClick={() => props.checkout(props.cartItems)}>checkout</button>
-
     </div>
   );
 };

@@ -9,6 +9,7 @@ const setCurrentUser = token => {
     localStorage.setItem("token", token);
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
     user = jwt_decode(token);
+    console.log("TCL USER ", user);
   } else {
     localStorage.removeItem("token");
     delete instance.defaults.headers.common.Authorization;

@@ -1,5 +1,5 @@
 import { ADD_TO_CART, CHECKOUT } from "./actionTypes";
-import axios from "axios";
+import instance from "./instance";
 
 export const addToCart = (item, close) => {
   return async dispatch => {
@@ -18,10 +18,7 @@ export const checkout = cryptosCart => {
   // };
   return async dispatch => {
     try {
-      const res = await axios.post(
-        "http://127.0.0.1:8000/api/checkout/",
-        cryptosCart
-      );
+      const res = await instance.post("api/checkout/", cryptosCart);
       dispatch({
         type: CHECKOUT
       });
