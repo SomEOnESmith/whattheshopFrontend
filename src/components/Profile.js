@@ -5,6 +5,7 @@ class Profile extends Component {
   render() {
     if (this.props.loading) return <div>Loading</div>;
     let profile = this.props.profile;
+    let user = this.props.user;
     console.log(profile, "profile");
     let transactions = profile.transactions.map(transaction =>
       <tr>
@@ -25,7 +26,7 @@ class Profile extends Component {
     return (
       <div className="container">
         <h1>
-          {profile.user.username}'s Profile
+          {user.username}'s Profile
         </h1>
         <div className="row">
           <div className="col-6">
@@ -69,6 +70,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.authReducer.user,
   profile: state.authReducer.profile,
   loading: state.authReducer.loading
 });

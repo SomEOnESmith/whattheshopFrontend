@@ -57,9 +57,7 @@ export const signup = (userData, history) => {
   return async dispatch => {
     try {
       const res = await instance.post("api/register/", userData);
-      const user = res.data;
-      dispatch(setCurrentUser(user.access));
-      history.replace("/");
+      dispatch(login(userData, history));
     } catch (err) {
       console.error(err);
     }
