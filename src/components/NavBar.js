@@ -5,15 +5,22 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 //FontAwesome
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingCart,
+  faSignInAlt,
+  faUserPlus,
+  faUser,
+  faSignOutAlt
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import {logout} from "../redux/actions/authActions"
+import { dispatch } from "rxjs/internal/observable/pairs";
 const NavBar = props => {
   return (
     <div>
       <nav className="navbar navbar-expand-xl navbar-dark bg-dark py-4 ">
         <NavLink className="navbar-brand" to="/item/list">
-          Navbar
+          Home
         </NavLink>
         <button
           className="navbar-toggler"
@@ -27,19 +34,28 @@ const NavBar = props => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav">
+          {/* <ul className="navbar-nav">
             <li className="nav-item active">
               <a className="nav-link" href="#">
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
-          </ul>
+          </ul> */}
         </div>
         <div>
           <ul className="nav justify-content-end">
+            {props.user?
+            <>
+              <li className="nav-item" >
+              <NavLink to="/profile" className="nav-link iconColor ">
+                <FontAwesomeIcon icon={faUser} size="1x" />
+                {props.user.username}
+              </NavLink>
+          
+            </li>
             <li className="nav-item">
               <NavLink to="/cart/list" className="nav-link iconColor ">
-                <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+                <FontAwesomeIcon icon={faShoppingCart} size="1x" />
                 {props.cart.length
                   ? <span className="badge badgePlace ">
                       {props.cart.length}
@@ -47,6 +63,29 @@ const NavBar = props => {
                   : <div />}
               </NavLink>
             </li>
+ <button className="nav-item border-0 bg-transparent" onClick={()=>props.logout()}>
+
+                <FontAwesomeIcon icon={faSignOutAlt} color="white" size="1x" />
+
+
+                    </button>
+            </>:
+            <>
+            <li className="nav-item">
+              <NavLink to="/login" className="nav-link iconColor ">
+                <FontAwesomeIcon icon={faSignInAlt} size="1x" />
+                Login
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/signup" className="nav-link iconColor ">
+                <FontAwesomeIcon icon={faUserPlus} size="1x" />
+                SignUp
+              </NavLink>
+            </li>
+            </>
+            }
+
           </ul>
         </div>
       </nav>
@@ -55,7 +94,11 @@ const NavBar = props => {
 };
 
 const mapStateToProps = state => ({
+  user:state.authReducer.user,
   cart: state.cartReducer.items
 });
 
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = dispatch=>({
+  logout: ()=> dispatch(logout())
+})
+export default connect(mapStateToProps,mapDispatchToProps)(NavBar);

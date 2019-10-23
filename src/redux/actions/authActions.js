@@ -1,44 +1,63 @@
-import { SET_CURRENT_USER } from "./actionTypes";
+import { SET_CURRENT_USER, FETCH_PROFILE } from "./actionTypes";
 import jwt_decode from "jwt-decode";
 import instance from "./instance";
 
-const setCurrentUser = token => {
-  console.log("token", token);
-  let user = null;
-  if (token) {
-    localStorage.setItem("token", token);
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-    user = jwt_decode(token);
-  } else {
-    localStorage.removeItem("token");
-    delete instance.defaults.headers.common.Authorization;
-    user = null;
-  }
-
-  return {
-    type: SET_CURRENT_USER,
-    payload: user
+export const fetchProfile = () => {
+  return async dispatch => {
+    try {
+      let res = await instance.get("api/profile/");
+      let profile = res.data;
+      dispatch({
+        type: FETCH_PROFILE,
+        payload: profile
+      });
+    } catch (error) {
+      console.error(error.response);
+    }
   };
 };
 
-export const login = userData => {
+const setCurrentUser = token => {
+  return dispatch => {
+    console.log("token", token);
+    let user = null;
+    if (token) {
+      localStorage.setItem("token", token);
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+      user = jwt_decode(token);
+      console.log("TCL USER ", user);
+      dispatch(fetchProfile());
+    } else {
+      localStorage.removeItem("token");
+      delete instance.defaults.headers.common.Authorization;
+      user = null;
+    }
+
+    dispatch({
+      type: SET_CURRENT_USER,
+      payload: user
+    });
+  };
+};
+
+export const login = (userData, history) => {
   return async dispatch => {
     try {
       const res = await instance.post("api/login/", userData);
       const user = res.data;
       dispatch(setCurrentUser(user.access));
+      history.replace("/");
     } catch (err) {
       console.error(err);
     }
   };
 };
 
-export const signup = userData => {
+export const signup = (userData, history) => {
   return async dispatch => {
     try {
       const res = await instance.post("api/register/", userData);
-      const user = res.data;
-      dispatch(setCurrentUser(user.access));
+      dispatch(login(userData, history));
     } catch (err) {
       console.error(err);
     }

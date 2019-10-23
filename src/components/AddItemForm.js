@@ -11,7 +11,10 @@ function AddItemForm(props) {
 
   const submitItem = event => {
     event.preventDefault();
-    props.addToCart({ currencyID: props.cryptoItem.id, quantity: quantity });
+    props.addToCart(
+      { currency: props.cryptoItem.id, quantity: quantity },
+      props.closeModal
+    );
   };
 
   return (
@@ -26,7 +29,7 @@ function AddItemForm(props) {
             className="form-control"
             name="quantity"
             value={quantity}
-            onChange={quant => setQuantity(quant)}
+            onChange={quant => setQuantity(quant.target.value)}
           />
         </div>
         <input type="submit" />
@@ -36,7 +39,7 @@ function AddItemForm(props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: item => dispatch(addToCart(item))
+  addToCart: (item, close) => dispatch(addToCart(item, close))
 });
 
 export default connect(null, mapDispatchToProps)(AddItemForm);
