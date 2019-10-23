@@ -1,7 +1,9 @@
-import { SET_CURRENT_USER } from "../actions/actionTypes";
+import { SET_CURRENT_USER, FETCH_PROFILE } from "../actions/actionTypes";
 
 const initialState = {
-  user: null
+  user: null,
+  profile: null,
+  loading: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,6 +12,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload
+      };
+    case FETCH_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
+        loading: false
       };
     default:
       return state;

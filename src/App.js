@@ -12,6 +12,7 @@ import ItemsList from "./components/ItemsList";
 import Signup from "./components/SignupForm";
 import Login from "./components/LoginForm";
 import Loading from "./components/Loading";
+import Profile from "./components/Profile";
 
 const App = props => {
   return (
@@ -22,6 +23,7 @@ const App = props => {
         : <div className="container mt-4">
             <Switch>
               {/* Clean up URLs - better naming convention */}
+              <Route path="/profile" component={Profile} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/cart" component={CartList} />

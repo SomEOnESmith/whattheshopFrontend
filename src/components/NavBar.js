@@ -9,7 +9,8 @@ import {
   faShoppingCart,
   faSignInAlt,
   faUserPlus,
-  faUser
+  faUser,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {logout} from "../redux/actions/authActions"
@@ -45,12 +46,13 @@ const NavBar = props => {
           <ul className="nav justify-content-end">
             {props.user?
             <>
-              <button className="nav-item bg-transparent" onClick={()=>props.logout()}>
-              <NavLink to="/" className="nav-link iconColor ">
+              <li className="nav-item" >
+              <NavLink to="/profile" className="nav-link iconColor ">
                 <FontAwesomeIcon icon={faUser} size="1x" />
                 {props.user.username}
               </NavLink>
-            </button>
+          
+            </li>
             <li className="nav-item">
               <NavLink to="/cart/list" className="nav-link iconColor ">
                 <FontAwesomeIcon icon={faShoppingCart} size="1x" />
@@ -61,6 +63,12 @@ const NavBar = props => {
                   : <div />}
               </NavLink>
             </li>
+ <button className="nav-item border-0 bg-transparent" onClick={()=>props.logout()}>
+
+                <FontAwesomeIcon icon={faSignOutAlt} color="white" size="1x" />
+
+
+                    </button>
             </>:
             <>
             <li className="nav-item">
