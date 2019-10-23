@@ -1,6 +1,6 @@
 import { ADD_TO_CART, CHECKOUT, REMOVE_ITEM } from "./actionTypes";
 import instance from "./instance";
-
+import { fetchProfile } from "./authActions";
 export const addToCart = (item, close) => {
   return async dispatch => {
     dispatch({
@@ -20,7 +20,7 @@ export const removeItem = item => {
   };
 };
 
-export const checkout = cryptosCart => {
+export const checkout = (cryptosCart, history) => {
   console.log("cart items = ", cryptosCart);
   // return {
   //   type: CHECKOUT
@@ -28,9 +28,9 @@ export const checkout = cryptosCart => {
   return async dispatch => {
     try {
       const res = await instance.post("api/checkout/", cryptosCart);
-      dispatch({
-        type: CHECKOUT
-      });
+      dispatch({ type: CHECKOUT });
+      dispatch(fetchProfile());
+      history.replace("/profile");
     } catch (err) {
       console.error("Error while posting cart", err);
     }

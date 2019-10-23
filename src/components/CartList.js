@@ -17,7 +17,9 @@ const CartList = props => {
     <div>
       {cart}
 
-      <button onClick={() => props.checkout(props.cartItems)}>checkout</button>
+      <button onClick={() => props.checkout(props.cartItems, props.history)}>
+        checkout
+      </button>
     </div>
   );
 };
@@ -28,7 +30,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  checkout: cartCryptosItem => dispatch(checkout(cartCryptosItem))
+  checkout: (cartCryptosItem, history) =>
+    dispatch(checkout(cartCryptosItem, history))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartList);

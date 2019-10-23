@@ -20,7 +20,7 @@ const NavBar = props => {
     <div>
       <nav className="navbar navbar-expand-xl navbar-dark bg-dark py-4 ">
         <NavLink className="navbar-brand" to="/item/list">
-          Navbar
+          Home
         </NavLink>
         <button
           className="navbar-toggler"
@@ -34,13 +34,13 @@ const NavBar = props => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav">
+          {/* <ul className="navbar-nav">
             <li className="nav-item active">
               <a className="nav-link" href="#">
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
-          </ul>
+          </ul> */}
         </div>
         <div>
           <ul className="nav justify-content-end">

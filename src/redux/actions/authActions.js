@@ -2,7 +2,7 @@ import { SET_CURRENT_USER, FETCH_PROFILE } from "./actionTypes";
 import jwt_decode from "jwt-decode";
 import instance from "./instance";
 
-const fetchProfile = () => {
+export const fetchProfile = () => {
   return async dispatch => {
     try {
       let res = await instance.get("api/profile/");
