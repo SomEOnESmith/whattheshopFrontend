@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 //component
 import AddItemForm from "./AddItemForm";
 import Modal from "react-responsive-modal";
-
 const ItemCard = props => {
   const [open, setOpen] = useState(false);
 
@@ -37,7 +37,11 @@ const ItemCard = props => {
             <Modal open={open} onClose={() => setOpen(false)} center>
               <AddItemForm closeModal={setOpen} cryptoItem={props.cryptoItem} />
             </Modal>
-            <button className="btn btn-success" onClick={() => setOpen(true)}>
+            <button
+              className="btn btn-success"
+              disabled={props.user ? false : true}
+              onClick={() => setOpen(true)}
+            >
               buy
             </button>
           </div>
@@ -46,5 +50,7 @@ const ItemCard = props => {
     </tbody>
   );
 };
-
-export default ItemCard;
+const mapStateToProps = state => ({
+  user: state.authReducer.user
+});
+export default connect(mapStateToProps)(ItemCard);

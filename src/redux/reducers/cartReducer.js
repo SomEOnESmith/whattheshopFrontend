@@ -1,4 +1,5 @@
-import { ADD_TO_CART, CHECKOUT } from "../actions/actionTypes";
+import { ADD_TO_CART, CHECKOUT, REMOVE_ITEM } from "../actions/actionTypes";
+import { Action } from "rxjs/internal/scheduler/Action";
 
 const initialState = {
   items: []
@@ -30,6 +31,14 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         items: []
+      };
+    case REMOVE_ITEM:
+      let newItems = state.items.filter(
+        item => item.currency !== payload.currency
+      );
+      return {
+        ...state,
+        items: newItems
       };
     default:
       return state;

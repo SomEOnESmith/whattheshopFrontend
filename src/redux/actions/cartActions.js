@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CHECKOUT } from "./actionTypes";
+import { ADD_TO_CART, CHECKOUT, REMOVE_ITEM } from "./actionTypes";
 import instance from "./instance";
 
 export const addToCart = (item, close) => {
@@ -8,6 +8,15 @@ export const addToCart = (item, close) => {
       payload: item
     });
     close(false);
+  };
+};
+
+export const removeItem = item => {
+  return async dispatch => {
+    dispatch({
+      type: REMOVE_ITEM,
+      payload: item
+    });
   };
 };
 

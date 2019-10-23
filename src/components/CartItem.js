@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { removeItem } from "../redux/actions/cartActions";
 const CartItem = props => {
   const { item } = props;
   console.log(item);
@@ -36,6 +36,12 @@ const CartItem = props => {
                   rate = {crypto.rate_change}%
                 </small>
               </p>
+              <button
+                className="btn btn-danger"
+                onClick={() => props.removeItem(item)}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>
@@ -47,5 +53,7 @@ const CartItem = props => {
 const mapStateToProps = state => ({
   cryptos: state.cryptosReducer.cryptos
 });
-
-export default connect(mapStateToProps)(CartItem);
+const mapDispatchToProps = dispatch => ({
+  removeItem: item => dispatch(removeItem(item))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
