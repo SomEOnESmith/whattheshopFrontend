@@ -6,7 +6,11 @@ import { connect } from "react-redux";
 class Signup extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    email: "",
+    first_name: "",
+    last_name: "",
+    phone_number: ""
   };
 
   handleChange = event =>
@@ -19,7 +23,14 @@ class Signup extends Component {
 
   render() {
     if (this.props.user) return <Redirect to="/" />;
-    const { username, password } = this.state;
+    const {
+      username,
+      password,
+      first_name,
+      last_name,
+      email,
+      phone_number
+    } = this.state;
 
     return (
       <div className="col-6 mx-auto">
@@ -50,6 +61,54 @@ class Signup extends Component {
                   onChange={this.handleChange}
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  value={this.state.email}
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="first_name">First Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="first_name"
+                  value={first_name}
+                  name="first_name"
+                  placeholder="First Name"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="last_name">Last Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="last_name"
+                  value={last_name}
+                  name="last_name"
+                  placeholder="Last Name"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="phone_number">Phone Number</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="phone_number"
+                  value={phone_number}
+                  name="phone_number"
+                  placeholder="Phone Number"
+                  onChange={this.handleChange}
+                />
+              </div>
 
               <button type="submit" className="btn btn-primary">
                 Signup
@@ -74,4 +133,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup);
