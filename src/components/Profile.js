@@ -1,28 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ProfileTable from "./ProfileTable";
 
 class Profile extends Component {
   render() {
     if (this.props.loading) return <div>Loading</div>;
     let profile = this.props.profile;
     let user = this.props.user;
-    console.log(profile, "profile");
-    let transactions = profile.transactions.map(transaction =>
-      <tr>
-        <th scope="row">
-          {transaction.id}
-        </th>
-        <td>
-          {transaction.datetime}
-        </td>
-        <td>
-          {transaction.total}
-        </td>
-        <td>
-          {transaction.is_paid}
-        </td>
-      </tr>
-    );
+
     return (
       <div className="container">
         <h1>
@@ -50,19 +35,7 @@ class Profile extends Component {
           </div>
         </div>
         <div className="row">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">Date</th>
-                <th scope="col">Total</th>
-                <th scope="col">Is Paid</th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactions}
-            </tbody>
-          </table>
+          <ProfileTable transactions={this.props.profile.transactions} />
         </div>
       </div>
     );
