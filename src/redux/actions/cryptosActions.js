@@ -1,12 +1,13 @@
 import axios from "axios";
 
 import { SET_LOADING, GET_CRYPTOS } from "./actionTypes";
+import instance from "./instance";
 
 export const getCryptos = () => {
   return async dispatch => {
     dispatch(setCryptosLoading());
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/list/");
+      const res = await instance.get("api/list/");
       const cryptos = res.data.map(crypto => {
         if (crypto.rate_change >= 0) {
           crypto.rate_change = `+${crypto.rate_change}`;
@@ -18,7 +19,7 @@ export const getCryptos = () => {
         payload: cryptos
       });
     } catch (err) {
-      console.error("Error while fetching shops", err);
+      console.error("Error while fetching cryptos", err);
     }
   };
 };

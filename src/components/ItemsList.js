@@ -5,9 +5,9 @@ import { connect } from "react-redux";
 import ItemCard from "./ItemCard";
 
 const ItemsList = props => {
-  const cryptosItem = props.cryptos.map(cryptoItem =>
+  const cryptosItem = props.cryptos.map(cryptoItem => (
     <ItemCard cryptoItem={cryptoItem} key={cryptoItem.id} />
-  );
+  ));
   return (
     <table className="table table-striped">
       <thead>

@@ -18,19 +18,21 @@ const App = props => {
   return (
     <div>
       <NavBar />
-      {props.loading
-        ? <Loading />
-        : <div className="container mt-4">
-            <Switch>
-              {/* Clean up URLs - better naming convention */}
-              <Route path="/profile" component={Profile} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/cart" component={CartList} />
-              <Route path="/list" component={ItemsList} />
-              <Redirect from="/" to="/list" />
-            </Switch>
-          </div>}
+      {props.loading ? (
+        <Loading />
+      ) : (
+        <div className="container mt-4">
+          <Switch>
+            {/* Clean up URLs - better naming convention */}
+            <Route path="/profile" component={Profile} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/cart" component={CartList} />
+            <Route path="/list" component={ItemsList} />
+            <Redirect from="/" to="/list" />
+          </Switch>
+        </div>
+      )}
     </div>
   );
 };
