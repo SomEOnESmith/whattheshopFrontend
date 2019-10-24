@@ -35,3 +35,7 @@ code {
   margin-left: 40px;
   margin-top: 40px;
 } */
+
+.root {
+  background-image: url("/navy.png");
+}

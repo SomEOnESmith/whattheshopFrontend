@@ -42,4 +42,7 @@ const mapDispatchToProps = dispatch => ({
   addToCart: (item, close) => dispatch(addToCart(item, close))
 });
 
-export default connect(null, mapDispatchToProps)(AddItemForm);
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddItemForm);

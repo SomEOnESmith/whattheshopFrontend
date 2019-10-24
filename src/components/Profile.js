@@ -11,9 +11,7 @@ class Profile extends Component {
     if (!user || !profile) return <Redirect to="/" />;
     return (
       <div className="container">
-        <h1>
-          {user.username}'s Profile
-        </h1>
+        <h1>{user.username}'s Profile</h1>
         <div className="row">
           <div className="col-6">
             <h3>

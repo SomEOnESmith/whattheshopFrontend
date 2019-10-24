@@ -3,9 +3,9 @@ import ProfileRow from "./ProfileRow";
 
 export default class ProfileTable extends Component {
   render() {
-    let transactions = this.props.transactions.map(transaction =>
+    let transactions = this.props.transactions.map(transaction => (
       <ProfileRow transaction={transaction} />
-    );
+    ));
     return (
       <table className="table w-100">
         <thead>
@@ -16,9 +16,7 @@ export default class ProfileTable extends Component {
             <th scope="col">Is Paid</th>
           </tr>
         </thead>
-        <tbody className="">
-          {transactions}
-        </tbody>
+        <tbody className="">{transactions}</tbody>
       </table>
     );
   }

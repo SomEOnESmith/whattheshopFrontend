@@ -10,14 +10,17 @@ import { checkout } from "../redux/actions/cartActions";
 
 const CartList = props => {
   if (!props.user) return <Redirect to="/" />;
-  const cart = props.cartItems.map((item, idx) =>
+  const cart = props.cartItems.map((item, idx) => (
     <CartItem item={item} key={idx} />
-  );
+  ));
   return (
     <div>
       {cart}
 
-      <button onClick={() => props.checkout(props.cartItems, props.history)}>
+      <button
+        onClick={() => props.checkout(props.cartItems, props.history)}
+        className="btn btn-block btn-outline-primary"
+      >
         checkout
       </button>
     </div>
@@ -34,4 +37,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(checkout(cartCryptosItem, history))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CartList);
