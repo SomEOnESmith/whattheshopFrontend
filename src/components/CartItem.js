@@ -11,7 +11,7 @@ const CartItem = props => {
   const total = item.quantity * crypto.price;
   return (
     <div>
-      <div className="card mb-3" style={{ color: "#FFFFFF" }}>
+      <div className="card mb-3">
         <div className="row no-gutters justify-content-center align-items-center">
           <div className="col-md-4 text-center">
             <img
@@ -23,7 +23,7 @@ const CartItem = props => {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">{item.currency}</h5>
+              <h5 className="card-title">{crypto.currency}</h5>
               <p className="card-text">
                 price = {crypto.price} KWD quantity = {item.quantity}
               </p>
