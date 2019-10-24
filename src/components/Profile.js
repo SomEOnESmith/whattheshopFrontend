@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ProfileTable from "./ProfileTable";
+import { Redirect } from "react-router-dom";
 
 class Profile extends Component {
   render() {
     if (this.props.loading) return <div>Loading</div>;
     let profile = this.props.profile;
     let user = this.props.user;
-
+    if (!user || !profile) return <Redirect to="/" />;
     return (
       <div className="container">
         <h1>
